@@ -43,8 +43,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build v2.10
-        with:
-          platforms: linux/amd64,linux/arm64
         run: |
           ln -s VERSION_210 VERSION
           ln -s patches-argo-cd-v2.10 patches-argo-cd
@@ -53,6 +51,6 @@ jobs:
           bash -x ./init.sh
           source ./VERSION
           VERSION=${BASE_VERSION}-${SUFFIX_VERSION}-${{ steps.prep.outputs.VERSION }}
-          ( cd argo-cd && IMAGE_NAMESPACE=ghcr.io/jksmth/fsa TARGET_ARCH=linux/amd64,linux/arm64 IMAGE_TAG=$VERSION DOCKER_PUSH=true make image )
+          ( cd argo-cd && IMAGE_NAMESPACE=ghcr.io/jksmth/fsa TARGET_ARCH=linux/arm64 IMAGE_TAG=$VERSION DOCKER_PUSH=true make image )
           unlink patches-argo-cd
           unlink VERSION
