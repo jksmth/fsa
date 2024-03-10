@@ -43,6 +43,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build v2.10
+        with:
+          platforms: linux/amd64,linux/arm64
         run: |
           ln -s VERSION_210 VERSION
           ln -s patches-argo-cd-v2.10 patches-argo-cd
